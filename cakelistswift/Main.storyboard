@@ -23,44 +23,53 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-114.39613526570049" y="40.571428571428569"/>
+            <point key="canvasLocation" x="-354" y="40"/>
         </scene>
         <!--Master-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
                 <tableViewController title="Master" id="pGg-6v-bdr" customClass="MasterViewController" customModule="cakelistswift" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="mLL-gJ-YKr">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="578" sectionHeaderHeight="22" sectionFooterHeight="22" id="mLL-gJ-YKr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CakeCell" rowHeight="60" id="B52-71-W6G" customClass="CakeCell" customModule="cakelistswift">
-                                <rect key="frame" x="0.0" y="22" width="414" height="60"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CakeCell" rowHeight="578" id="B52-71-W6G" customClass="CakeCell" customModule="cakelistswift">
+                                <rect key="frame" x="0.0" y="22" width="414" height="578"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="B52-71-W6G" id="yGV-Jd-h9v">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="59.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="577.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2cJ-YH-PLb">
-                                            <rect key="frame" x="0.0" y="0.0" width="60" height="59"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2cJ-YH-PLb">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="414"/>
                                             <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="2cJ-YH-PLb" secondAttribute="height" multiplier="1:1" id="TaT-Iw-TQD"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLQ-Hv-eeT">
-                                            <rect key="frame" x="68" y="8" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pLQ-Hv-eeT">
+                                            <rect key="frame" x="20" y="426" width="72" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAL-IQ-xUk">
-                                            <rect key="frame" x="256" y="30" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cake description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAL-IQ-xUk">
+                                            <rect key="frame" x="20" y="455" width="129" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pLQ-Hv-eeT" firstAttribute="top" secondItem="2cJ-YH-PLb" secondAttribute="bottom" constant="12" id="Awq-jd-YQp"/>
+                                        <constraint firstItem="2cJ-YH-PLb" firstAttribute="leading" secondItem="yGV-Jd-h9v" secondAttribute="leading" id="BRR-UE-o9R"/>
+                                        <constraint firstItem="2cJ-YH-PLb" firstAttribute="top" secondItem="yGV-Jd-h9v" secondAttribute="top" id="IlZ-Me-pbz"/>
+                                        <constraint firstItem="XAL-IQ-xUk" firstAttribute="leading" secondItem="yGV-Jd-h9v" secondAttribute="leading" constant="20" id="LCl-dQ-rAs"/>
+                                        <constraint firstItem="XAL-IQ-xUk" firstAttribute="top" secondItem="pLQ-Hv-eeT" secondAttribute="bottom" constant="8" id="NFT-Ft-zSi"/>
+                                        <constraint firstAttribute="trailing" secondItem="2cJ-YH-PLb" secondAttribute="trailing" id="QQW-T9-7hM"/>
+                                        <constraint firstItem="pLQ-Hv-eeT" firstAttribute="leading" secondItem="yGV-Jd-h9v" secondAttribute="leading" constant="20" id="zx0-pO-NAB"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="cakeImageView" destination="2cJ-YH-PLb" id="DxE-Fk-Grg"/>
