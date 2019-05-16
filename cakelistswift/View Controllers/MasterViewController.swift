@@ -49,20 +49,23 @@ class MasterViewController: UITableViewController {
             cell.cakeImageView?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
         }
         else {
-            let imageUrl = dictionary["image"] as! String
-            let url:URL! = URL(string: imageUrl)
-            
-            task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-                if let data = try? Data(contentsOf: url){
-                    DispatchQueue.main.async(execute: { () -> Void in
-                        let updateCell = tableView.cellForRow(at: indexPath) as! CakeCell
-                        let img:UIImage! = UIImage(data: data)
-                        updateCell.cakeImageView?.image = img
-                        self.cache.setObject(img, forKey: (indexPath as NSIndexPath).row as AnyObject)
-                    })
-                }
-            })
-            task.resume()
+            if let imageUrl = dictionary["image"] {
+                let url:URL! = URL(string: imageUrl)
+                
+                task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+                    if let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            if let updateCell = tableView.cellForRow(at: indexPath) {
+                                let updateCakeCell = updateCell as? CakeCell
+                                let img:UIImage! = UIImage(data: data)
+                                updateCakeCell?.cakeImageView?.image = img
+                                self.cache.setObject(img, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                            }
+                        })
+                    }
+                })
+                task.resume()
+            }
         }
         
         return cell
