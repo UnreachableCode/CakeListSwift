@@ -10,7 +10,7 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var objects = [[String:String]]()
+    var objects = [Cake]()
     
     var refreshCtrl: UIRefreshControl!
     var task: URLSessionDownloadTask!
@@ -40,16 +40,16 @@ class MasterViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CakeCell", for: indexPath) as! CakeCell
         
-        let dictionary = objects[indexPath.row]
-        cell.titleLabel.text = dictionary["title"]
-        cell.descriptionLabel.text = dictionary["desc"]
+        let cakeModel = objects[indexPath.row]
+        cell.titleLabel.text = cakeModel.title
+        cell.descriptionLabel.text = cakeModel.description
         cell.cakeImageView?.image = UIImage(named: "CakePlaceholder")
         
         if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil) {
             cell.cakeImageView?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
         }
         else {
-            if let imageUrl = dictionary["image"] {
+            if let imageUrl = cakeModel.imageUrl {
                 let url:URL! = URL(string: imageUrl)
                 
                 task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
@@ -90,7 +90,12 @@ class MasterViewController: UITableViewController {
                     return
                 }
                 
-                self.objects = dataList;
+                var models = [Cake]()
+                for dic in dataList{
+                    models.append(Cake(dic))
+                }
+                
+                self.objects = models;
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
