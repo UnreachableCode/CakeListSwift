@@ -25,9 +25,7 @@ class MasterViewController: UITableViewController {
         
         self.cache = NSCache()
         
-        DispatchQueue.main.async { 
-            self.getData()
-        }
+        self.getData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,22 +43,28 @@ class MasterViewController: UITableViewController {
         let dictionary = objects[indexPath.row]
         cell.titleLabel.text = dictionary["title"]
         cell.descriptionLabel.text = dictionary["desc"]
+        cell.cakeImageView?.image = UIImage(named: "CakePlaceholder")
         
-        let imageUrl = dictionary["image"] as! String
-        let url:URL! = URL(string: imageUrl)
-        
-        task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
-            if let data = try? Data(contentsOf: url){
-                let img:UIImage! = UIImage(data: data)
-                
-                DispatchQueue.main.async {
-                    cell.cakeImageView.image = img
-                }
-            }
-        })
+        if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil) {
+            cell.cakeImageView?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+        }
+        else {
+            let imageUrl = dictionary["image"] as! String
+            let url:URL! = URL(string: imageUrl)
             
-        task.resume()
-
+            task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
+                if let data = try? Data(contentsOf: url){
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        let updateCell = tableView.cellForRow(at: indexPath) as! CakeCell
+                        let img:UIImage! = UIImage(data: data)
+                        updateCell.cakeImageView?.image = img
+                        self.cache.setObject(img, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                    })
+                }
+            })
+            task.resume()
+        }
+        
         return cell
     }
     
@@ -84,7 +88,9 @@ class MasterViewController: UITableViewController {
                 }
                 
                 self.objects = dataList;
-                self.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             } catch let parsingError {
                 print("Error", parsingError)
             }
